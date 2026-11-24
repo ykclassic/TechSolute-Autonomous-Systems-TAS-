@@ -1,11 +1,13 @@
-# TAS Phase 1 — Candidate MVP Workflow Specification
+# TAS Phase 1 — Selected MVP Workflow Specification
 
 **Workflow:** Owner-approved post-appointment follow-up  
 **Domain system:** SmeOps  
-**Status:** Proposed; discovery and integration contract validation required  
+**Status:** MVP direction approved 2026-11-24; discovery and integration contract validation required  
 **Risk:** R2 — customer-visible operational communication
 
 ## 1. Purpose
+
+The user approved this workflow as the first TAS MVP direction on 2026-11-24. This approval selects the workflow only; implementation and production dispatch remain gated by Phase 1 acceptance, approved SmeOps contracts, communication-policy validation and security/privacy review.
 
 Prepare a consistent customer follow-up after a SmeOps appointment is completed, while keeping the business owner in control of whether it is sent. TAS prepares and governs the action; it does not autonomously send messages in the MVP.
 
