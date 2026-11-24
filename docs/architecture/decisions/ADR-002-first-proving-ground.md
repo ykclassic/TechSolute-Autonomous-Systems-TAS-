@@ -1,6 +1,6 @@
 # ADR-002: SmeOps as the Proposed First TAS Proving Ground
 
-- **Status:** Proposed; product-owner confirmation required
+- **Status:** Accepted as the first MVP direction; implementation gates remain open
 - **Date:** 2026-11-24
 - **Decision owner:** TechSolute Hub product leadership
 - **Related phase:** Phase 1
@@ -13,7 +13,7 @@ SmeOps documents tenant-scoped appointment/customer data, deterministic booking,
 
 ## Decision
 
-Select SmeOps as the **proposed** first proving ground, subject to confirmation by its accountable product owner.
+Select SmeOps as the first TAS proving ground. The user approved the MVP direction on 2026-11-24. This decision selects the workflow and does not represent completion of customer discovery, assignment of the SmeOps operational owner, approval of integration contracts or authorization for production dispatch.
 
 Candidate MVP: owner-approved post-appointment follow-up.
 1. Trigger from authoritative completed appointment.
@@ -38,6 +38,12 @@ Positive: bounded operational workflow; potential reuse of SmeOps tenant and out
 
 Risks: customer need and willingness to pay are unvalidated; event and outbound contracts need code-level confirmation; consent/opt-out/privacy remain open; internal SmeOps functions are not automatically stable APIs.
 
+## Approval record
+
+- **Approval:** User approved the owner-approved Telegram follow-up MVP direction on 2026-11-24.
+- **Scope:** One post-appointment follow-up workflow, Telegram as the conditional first channel, deterministic message template, mandatory owner approval for every dispatch.
+- **Not approved by this decision:** autonomous customer messaging, production enablement, direct database access, polling internal audit rows as an integration contract, or bypassing SmeOps messaging controls.
+
 ## Conditions before implementation
 
 - Named SmeOps owner approves workflow.
@@ -46,4 +52,4 @@ Risks: customer need and willingness to pay are unvalidated; event and outbound 
 - Telegram recipient eligibility and opt-out behavior are verified.
 - Security/privacy review approves data flow.
 
-Until then, this ADR remains proposed; no implementation commitment is implied.
+The workflow selection is accepted. Implementation remains blocked until the conditions below are evidenced and reviewed.
