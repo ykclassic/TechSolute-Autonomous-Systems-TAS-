@@ -2,6 +2,8 @@
 
 **Status:** Open working register | **Last reviewed:** 2026-11-24
 
+**Decision update (2026-11-24):** The user approved the owner-approved Telegram post-appointment follow-up as the first TAS MVP direction. This closes the MVP-selection decision only; it does not close the remaining Phase 1 acceptance requirements or authorize implementation/production dispatch.
+
 ## 1. Assumptions requiring validation
 
 | ID | Assumption | Evidence currently available | Validation required |
@@ -61,6 +63,7 @@
 | Mission and product boundaries documented | Evidence ready | `docs/strategy/PRODUCT_AND_ENGINEERING_STRATEGY.md` |
 | Existing products inventoried | Desk review complete | `docs/phase-1/PROJECT_INVENTORY.md`; not a full code/security audit |
 | Candidate MVP workflow specified | Drafted | `docs/phase-1/MVP_WORKFLOW_SPEC.md` |
+| First MVP direction approved | Accepted | User approval recorded 2026-11-24; see ADR-002 |
 | Named product/workflow owner confirmed | Open | Assign accountable owner |
 | Customer discovery completed | Open | Record interviews and findings |
 | Baseline KPI measured | Open | Collect eligible volume and manual follow-up time |
@@ -71,14 +74,14 @@
 
 ## 5. Phase 1 exit decision
 
-**Decision: NOT ACCEPTED / IN PROGRESS.**
+**Decision: NOT ACCEPTED / IN PROGRESS.** MVP direction selection is approved; Phase 1 as a whole is not accepted.
 
 Desk-based repository inventory and documentation artifacts are ready for review. Phase 1 cannot be accepted until:
-- An accountable product/workflow owner is assigned.
-- Customer discovery is recorded.
-- A primary KPI and baseline collection method are approved.
-- SmeOps confirms the event and outbound integration contract.
-- Telegram eligibility, opt-out and privacy requirements are confirmed.
+- An accountable SmeOps product/workflow owner and authorized approvers are named and confirmed.
+- Customer discovery is recorded and the target problem is validated.
+- A primary KPI and baseline collection method are approved, with baseline data collected.
+- SmeOps confirms the versioned completion-event/outbox and outbound integration contracts.
+- Telegram eligibility, preference/opt-out, consent, customer-expectation and privacy requirements are confirmed.
 
 If any item is intentionally deferred, the accountable owner must record the risk and approve the revised scope. Do not silently mark Phase 1 complete.
 
