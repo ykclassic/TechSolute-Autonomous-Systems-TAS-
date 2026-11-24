@@ -131,3 +131,14 @@ Baseline values are not available from repository review and must be collected b
 - What idempotency key is shared across TAS and SmeOps?
 - What retention applies to drafts, approvals and delivery evidence?
 - Who is the accountable SmeOps owner and who may approve customer communication?
+
+
+## 14. Code-inspection refinement (2026-11-24)
+
+The current SmeOps completion endpoint in `app/api/business.py` performs the confirmed-to-completed transition, records `appointment.completed` in `AuditEvent` and commits. The inspected handler does not enqueue a job or publish an event as part of that transaction. Therefore, the MVP cannot safely assume a durable completion trigger exists today.
+
+**Required prerequisite:** SmeOps must add or expose a versioned appointment-completed integration contract. For reliable asynchronous delivery, prefer a transactional outbox written in the same transaction as the appointment state and audit event, then relay it idempotently. The TAS consumer must deduplicate using a stable event identifier. Do not poll internal audit rows as an undocumented substitute.
+
+SmeOps already has a durable background-job primitive with tenant-scoped idempotency, payload fingerprinting, worker leases and dead-letter handling. Reuse is possible only through an approved boundary; direct cross-repository imports or direct writes to SmeOps tables are not acceptable platform contracts.
+
+The selected code verifies Telegram identity for customer notification enqueueing, but the review did not establish a complete Telegram opt-out/preference model. This is a blocking policy question for customer follow-up. Do not infer that WhatsApp opt-out semantics apply to Telegram.
