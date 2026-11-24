@@ -25,7 +25,7 @@
 
 **Exit:** named owner and workflow; all actors, inputs, side effects and systems of record identified; baseline KPI definitions and owners; risks recorded; customer validation documented.
 
-**Current status:** desk-based repository review and documentation produced. Customer interviews, workflow-owner confirmation, baseline KPI data and final integration acceptance remain open. Phase 1 is not yet accepted.
+**Current status (2026-11-24):** desk-based repository review and documentation produced; the user approved the owner-approved Telegram post-appointment follow-up as the first MVP direction. Customer interviews, named SmeOps workflow owner/approvers, baseline KPI data, event/outbox and outbound integration acceptance, and Telegram communication-policy validation remain open. Phase 1 is not yet accepted.
 
 ## Phase 2 — Platform foundations and engineering standards
 
