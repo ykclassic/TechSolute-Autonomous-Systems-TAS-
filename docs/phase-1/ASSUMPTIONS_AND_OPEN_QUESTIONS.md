@@ -81,3 +81,20 @@ Desk-based repository inventory and documentation artifacts are ready for review
 - Telegram eligibility, opt-out and privacy requirements are confirmed.
 
 If any item is intentionally deferred, the accountable owner must record the risk and approve the revised scope. Do not silently mark Phase 1 complete.
+
+
+## 6. Findings from targeted SmeOps code inspection
+
+| Finding | Evidence | Phase 1 consequence |
+|---|---|---|
+| Completion is an owner/manager transition from `confirmed` to `completed` | `app/api/business.py` completion handler locks tenant/appointment, writes `completed_at` and `appointment.completed` audit event, then commits | Trigger semantics are defined, but integration delivery is not. |
+| Completion handler does not publish a job/event in the same transaction | Inspected completion handler contains no queue/outbox call | Add a transactional outbox or an equivalent reviewed event boundary in SmeOps before TAS consumes completion events. |
+| SmeOps has durable jobs with tenant-scoped idempotency and payload fingerprints | `app/jobs/queue.py`, `app/models/jobs.py` | Useful primitive; not a substitute for a public/versioned cross-repository event contract. |
+| Telegram notification enqueue requires an active platform bot and verified tenant-scoped customer identity | `app/services/telegram_customer_notifications.py` | Identity is a useful guard; full communication preference/opt-out still requires validation. |
+| Telegram opt-out/preference contract was not established in inspected files | Targeted review of selected service/model/docs | Treat customer follow-up eligibility as blocked until the domain owner confirms policy and implementation. |
+
+### Updated Phase 1 blockers
+1. Define and approve SmeOps appointment-completed event contract, including transactional outbox and stable event ID.
+2. Define Telegram follow-up eligibility, opt-out/preference, consent, and customer-expectation rules.
+3. Confirm SmeOps owner and approval roles.
+4. Validate the follow-up problem with customers and collect baseline data.
