@@ -79,3 +79,17 @@ Status: no initial integration planned.
 ## Verification still required
 
 This inventory does not verify deployed commit parity, live database/migration state, runtime access policies, secrets, backups, retention, incident readiness, complete API compatibility, customer consent/legal basis, performance or unit economics. These require targeted review before integration or production release.
+
+
+## 9. SmeOps appointment-completion code inspection (2026-11-24)
+
+A targeted inspection of `app/api/business.py`, `app/models/jobs.py`, `app/jobs/queue.py` and migration `0017_appointment_lifecycle.py` refined the integration assessment:
+
+- `POST /appointments/{appointment_id}/complete` is an owner/manager operation. It locks the active tenant and appointment, permits the transition only from `confirmed`, sets `status = completed` and `completed_at`, inserts an `AuditEvent` with type `appointment.completed`, and commits.
+- The inspected completion handler does **not** enqueue a background job or publish a durable domain event in that transaction. The audit row is not itself a supported cross-system event-delivery contract.
+- SmeOps has a durable `BackgroundJob` queue with tenant-scoped idempotency keys, payload fingerprints, worker leases, bounded attempts and dead-letter state. That is a useful implementation primitive, but it does not prove that appointment completion is atomically connected to an event/outbox.
+- Migration `0017_appointment_lifecycle` adds completed/missed states and lifecycle timestamps. It does not add an outbox table or an appointment-completed delivery mechanism.
+
+**Integration implication:** TAS must not poll the audit table or read SmeOps database internals as its integration contract. The SmeOps domain should expose a versioned event/API and, if reliable delivery is required, publish it through a transactional outbox or equivalent mechanism committed with the appointment state change. This is a SmeOps change and requires its own reviewed implementation plan.
+
+**Communication-policy gap:** selected code verifies Telegram customer identity before enqueueing customer appointment notifications, but the inspected evidence does not establish a complete Telegram customer opt-out/preference contract for this new follow-up use case. WhatsApp opt-out support documented in the README must not be assumed to cover Telegram.
