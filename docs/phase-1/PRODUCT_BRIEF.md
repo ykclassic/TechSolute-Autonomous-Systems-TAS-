@@ -1,6 +1,6 @@
 # TAS Phase 1 — Product Brief
 
-**Version:** 1.0 | **Status:** Proposed; customer and owner validation required | **Date:** 2026-11-24
+**Version:** 1.1 | **Status:** MVP direction approved; Phase 1 validation and implementation gates remain open | **Date:** 2026-11-24
 
 ## Product definition
 
@@ -30,9 +30,9 @@ Reduce manual work in defined workflows without removing human authority. For th
 
 SmeOps is proposed because its repository documents tenant-scoped appointment data, appointment lifecycle operations, shared Telegram bot, verified customer identity and durable outbound delivery. SmeOps remains the system of record for tenants, customers, services, appointments and messaging state. TAS must not duplicate those entities.
 
-## Candidate MVP
+## Selected first MVP
 
-**Owner-approved post-appointment follow-up assistant.** When an appointment reaches completed state, validate tenant and recipient context, prepare a follow-up draft, require owner approval of the exact message and dispatch only through an approved SmeOps messaging boundary.
+**Owner-approved post-appointment follow-up assistant.** The user approved this MVP direction on 2026-11-24. This selects the product direction; it does not authorize implementation, production dispatch or bypass the remaining Phase 1 gates. When an appointment reaches completed state, validate tenant and recipient context, prepare a follow-up draft, require owner approval of the exact message and dispatch only through an approved SmeOps messaging boundary.
 
 Telegram is the initial channel candidate, subject to customer preference, opt-out and privacy review. WhatsApp is not an initial dependency while business-number acceptance remains externally constrained. Use deterministic templates first; AI drafting is optional later and cannot decide eligibility, recipient, state or authorization.
 
@@ -90,7 +90,14 @@ Mitigate through explicit eligibility, verified recipient, revalidation before d
 5. Telegram communication eligibility, opt-out and customer-expectation rules.
 6. Exact outbound API/service contract and transaction boundary.
 7. Primary outcome KPI and attribution window.
-8. Security/privacy review of data shared with TAS.
+8. Security/privacy review of data shared with TAS
+
+## Approval record
+
+- **MVP direction:** Approved by the user on 2026-11-24.
+- **Selected workflow/channel:** Owner-approved post-appointment follow-up via Telegram, conditional on validated customer communication eligibility, preference/opt-out and privacy rules.
+- **Dispatch authority:** Every customer-visible message requires an authorized owner's approval bound to the exact payload, recipient, tenant, appointment reference, channel and expiry.
+- **Implementation status:** Not started. SmeOps event/outbox and outbound contracts, customer discovery, KPI baseline, named operational owner/approvers and security/privacy review remain gates..
 
 ## Phase 1 status
 
@@ -99,6 +106,7 @@ Mitigate through explicit eligibility, verified recipient, revalidation before d
 - Workflow specification: drafted.
 - Customer validation: open.
 - Baseline KPI collection: open.
-- Final MVP approval: open.
+- MVP direction approval: received (2026-11-24).
+- Implementation authorization: gated on Phase 1 acceptance or an explicit, documented risk acceptance by the accountable owner..
 
 Phase 1 remains in progress until open validation items are resolved or explicitly accepted as deferred risks by the accountable owner.
